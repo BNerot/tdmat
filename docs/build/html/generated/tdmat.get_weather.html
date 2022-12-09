@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tdmat.get_weather &#8212; tdmat 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tdmat.Weather" href="tdmat.Weather.html" />
+    <link rel="prev" title="tdmat.read_PVGIS_TMY" href="tdmat.read_PVGIS_TMY.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tdmat.Weather.html" title="tdmat.Weather"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tdmat.read_PVGIS_TMY.html" title="tdmat.read_PVGIS_TMY"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../loading_weather_data.html" accesskey="U">1. Loading weather data</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.get_weather</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tdmat-get-weather">
+<h1>tdmat.get_weather<a class="headerlink" href="#tdmat-get-weather" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="tdmat.get_weather">
+<span class="sig-prename descclassname"><span class="pre">tdmat.</span></span><span class="sig-name descname"><span class="pre">get_weather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">TMY_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solar_vector_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.get_weather" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define quickly a Weather instance by loading data from disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>TMY_path</strong> (<em>str</em><em> or </em><em>path-like</em>) – Path of a TMY csv file downloaded from the PVGIS database <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p></li>
+<li><p><strong>solar_vector_path</strong> (<em>str</em><em> or </em><em>path-like</em>) – <p>Path of a 3-columns csv file with:</p>
+<blockquote>
+<div><ul>
+<li><p>first column: date-like or other field</p></li>
+<li><p>second column: azimuth angle (eastward from North), in °.</p></li>
+<li><p>third column: elevation angle, in °.</p></li>
+</ul>
+</div></blockquote>
+<p>The file must have a length of 8760 and a header row.</p>
+</p></li>
+<li><p><strong>shift</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default 0</em>) – Time zone shift, negative west from Greenwich, in hours.
+All values (TMY, solar vector) are shifted of <cite>shift</cite> hours.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>weather</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="tdmat.Weather.html#tdmat.Weather" title="tdmat.Weather">Weather</a></p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Photovoltaic Geographical Information System, 2022. Online.
+Available from: <a class="reference external" href="https://re.jrc.ec.europa.eu/pvg_tools/fr/tools.html">https://re.jrc.ec.europa.eu/pvg_tools/fr/tools.html</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">tdmat.get_weather</a><ul>
+<li><a class="reference internal" href="#tdmat.get_weather"><code class="docutils literal notranslate"><span class="pre">get_weather()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tdmat.read_PVGIS_TMY.html"
+                          title="previous chapter">tdmat.read_PVGIS_TMY</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="tdmat.Weather.html"
+                          title="next chapter">tdmat.Weather</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/generated/tdmat.get_weather.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tdmat.Weather.html" title="tdmat.Weather"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tdmat.read_PVGIS_TMY.html" title="tdmat.read_PVGIS_TMY"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../loading_weather_data.html" >1. Loading weather data</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.get_weather</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, BNerot.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

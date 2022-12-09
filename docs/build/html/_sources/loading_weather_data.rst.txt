@@ -1,0 +1,12 @@
+1. Loading weather data
+=======================
+
+
+
+.. autosummary::
+   :toctree: generated
+	
+	tdmat.read_PVGIS_TMY
+	tdmat.get_weather
+	tdmat.Weather
+	

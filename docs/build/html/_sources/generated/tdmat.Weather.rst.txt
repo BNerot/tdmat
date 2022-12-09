@@ -1,0 +1,31 @@
+﻿tdmat.Weather
+=============
+
+.. currentmodule:: tdmat
+
+.. autoclass:: Weather
+
+   
+   .. automethod:: __init__
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+   
+      ~Weather.__init__
+      ~Weather.add_custom_irradiance
+      ~Weather.add_soil_temperature
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Weather.season_length
+      ~Weather.weather_data
+   
+   

@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tdmat.Weather &#8212; tdmat 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Loading the construction properties of a Tabula building" href="../loading_building_features.html" />
+    <link rel="prev" title="tdmat.get_weather" href="tdmat.get_weather.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../loading_building_features.html" title="2. Loading the construction properties of a Tabula building"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tdmat.get_weather.html" title="tdmat.get_weather"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../loading_weather_data.html" accesskey="U">1. Loading weather data</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.Weather</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tdmat-weather">
+<h1>tdmat.Weather<a class="headerlink" href="#tdmat-weather" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tdmat.Weather">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tdmat.</span></span><span class="sig-name descname"><span class="pre">Weather</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_normal_irradiance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffuse_horizontal_irradiance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Weather" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Weather instance is a container for meteorological (temperature, irradiance) and solar position (azimuth, elevation) data.</p>
+<p>Weather instances are required by <cite>Demand</cite> instances to compute space heating space cooling thermal demands.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Weather.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_normal_irradiance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diffuse_horizontal_irradiance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elevation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Weather.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates Weather object and computes solar irradiance profiles required by Demand.</p>
+<p>Heating and cooling seasons are also defined.
+The cooling season is the longest period for which the mean weeekly temperature is above 12°C.
+The heating season is the complementary of the cooling season in the year.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>external_temperature</strong> (<em>list</em>) – In °C. Length 8760.
+Hourly values of the ambient outdoor air temperature.</p></li>
+<li><p><strong>direct_normal_irradiance</strong> (<em>list</em>) – In kW/m2. Length 8760.
+Hourly values of direct solar irradiance, on a perpendicular plane to sunrays.</p></li>
+<li><p><strong>diffuse_horizontal_irradiance</strong> (<em>list</em>) – In kW/m2. Length 8760.
+Hourly values of diffuse solar irradiance.</p></li>
+<li><p><strong>azimuth</strong> (<em>list</em>) – In °. Length 8760.
+The first coordinate of the solar vector.
+Reference is north, going eastward (clockwise).</p></li>
+<li><p><strong>elevation</strong> (<em>list</em>) – In °. Length 8760.
+The second coordinate of the solar vector.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tdmat.Weather.__init__" title="tdmat.Weather.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(external_temperature, ...)</p></td>
+<td><p>Creates Weather object and computes solar irradiance profiles required by Demand.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tdmat.Weather.add_custom_irradiance" title="tdmat.Weather.add_custom_irradiance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_custom_irradiance</span></code></a>(east, north, ...)</p></td>
+<td><p>Compute the global irradiance (kW/m2) received by a surface described by the coordinates of its normal vector.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tdmat.Weather.add_soil_temperature" title="tdmat.Weather.add_soil_temperature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_soil_temperature</span></code></a>([alpha, depth])</p></td>
+<td><p>Compute the soil temperature at a given depth, according to the model of (Kusuda et al., 1965) <a class="footnote-reference brackets" href="#id3" id="id1">1</a>.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tdmat.Weather.season_length" title="tdmat.Weather.season_length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">season_length</span></code></a></p></td>
+<td><p>The lengths of heating ('HS') and non heating seasons ('NHS'), in hours.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tdmat.Weather.weather_data" title="tdmat.Weather.weather_data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weather_data</span></code></a></p></td>
+<td><p>A DataFrame containing the data read from disk and computed.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Weather.add_custom_irradiance">
+<span class="sig-name descname"><span class="pre">add_custom_irradiance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">east</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">north</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Weather.add_custom_irradiance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the global irradiance (kW/m2) received by a surface described by the coordinates of its normal vector.</p>
+<p>Based on the scalar product of the solar vector coordinates and the surface vector coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>east</strong> (<em>float</em>) – 0 &lt;= east &lt;= 1
+East coordinate of the normal vector.</p></li>
+<li><p><strong>north</strong> (<em>float</em>) – 0 &lt;= north &lt;= 1
+North coordinate of the normal vector.</p></li>
+<li><p><strong>horizontal</strong> (<em>float</em>) – 0 &lt;= horizontal &lt;= 1
+Horizontal coordinate of the normal vector.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Custom name to identify the created data in <cite>weather_data</cite> attribute.
+Full name is “Global <cite>name</cite> irradiance (kW/m2)”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>values</strong> – The calculated values.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Weather.add_soil_temperature">
+<span class="sig-name descname"><span class="pre">add_soil_temperature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9.002976190476191e-07</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Weather.add_soil_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the soil temperature at a given depth, according to the model of (Kusuda et al., 1965) <a class="footnote-reference brackets" href="#id3" id="id2">1</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>float</em>) – In m2/s.
+Thermal diffusivity of the soil.</p></li>
+<li><p><strong>depth</strong> (<em>float</em>) – depth &gt; 0. In m.
+Depth for calculation of the soil temperature.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method adds a column ‘Soil temperature - <cite>x`m depth (°C)’ to attribute `weather_data</cite>, with <cite>x</cite> a one-decimal rounding of <cite>depth</cite>.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>)</span></dt>
+<dd><p>KUSUDA, T and ACHENBACH, P.R., 1965.
+Earth temperature and thermal diffusivity at selected stations in the United States. June 1965. P.236.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tdmat.Weather.season_length">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">season_length</span></span><a class="headerlink" href="#tdmat.Weather.season_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>The lengths of heating (‘HS’) and non heating seasons (‘NHS’), in hours.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tdmat.Weather.weather_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">weather_data</span></span><a class="headerlink" href="#tdmat.Weather.weather_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>A DataFrame containing the data read from disk and computed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">tdmat.Weather</a><ul>
+<li><a class="reference internal" href="#tdmat.Weather"><code class="docutils literal notranslate"><span class="pre">Weather</span></code></a><ul>
+<li><a class="reference internal" href="#tdmat.Weather.__init__"><code class="docutils literal notranslate"><span class="pre">Weather.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Weather.add_custom_irradiance"><code class="docutils literal notranslate"><span class="pre">Weather.add_custom_irradiance()</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Weather.add_soil_temperature"><code class="docutils literal notranslate"><span class="pre">Weather.add_soil_temperature()</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Weather.season_length"><code class="docutils literal notranslate"><span class="pre">Weather.season_length</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Weather.weather_data"><code class="docutils literal notranslate"><span class="pre">Weather.weather_data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="tdmat.get_weather.html"
+                          title="previous chapter">tdmat.get_weather</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../loading_building_features.html"
+                          title="next chapter">2. Loading the construction properties of a Tabula building</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/generated/tdmat.Weather.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../loading_building_features.html" title="2. Loading the construction properties of a Tabula building"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tdmat.get_weather.html" title="tdmat.get_weather"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../loading_weather_data.html" >1. Loading weather data</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.Weather</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, BNerot.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+﻿tdmat.read\_PVGIS\_TMY
+======================
+
+.. currentmodule:: tdmat
+
+.. autofunction:: read_PVGIS_TMY

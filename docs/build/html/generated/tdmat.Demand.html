@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tdmat.Demand &#8212; tdmat 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/nature.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="3. Calculating thermal demands" href="../calculating_demand.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../calculating_demand.html" title="3. Calculating thermal demands"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../calculating_demand.html" accesskey="U">3. Calculating thermal demands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.Demand</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tdmat-demand">
+<h1>tdmat.Demand<a class="headerlink" href="#tdmat-demand" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="tdmat.Demand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tdmat.</span></span><span class="sig-name descname"><span class="pre">Demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">building</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weather</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DHW_profile_draw_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DHW_proportions={'circulation':</span> <span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'draw-off':</span> <span class="pre">0.6}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_DHW=20000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_SH=&lt;function</span> <span class="pre">Demand.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_SC=&lt;function</span> <span class="pre">Demand.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_contributions=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Demand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Demand instances associate a Weather and a Building instance to define space heating (SH), space cooling (SC) and DHW thermal
+demands (DHW) of a Tabula building.</p>
+<p>These thermal demands are stored in attribute <cite>df</cite> while</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Demand.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">building</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weather</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DHW_profile_draw_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DHW_proportions={'circulation':</span> <span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'draw-off':</span> <span class="pre">0.6}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E_DHW=20000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_SH=&lt;function</span> <span class="pre">Demand.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu_SC=&lt;function</span> <span class="pre">Demand.&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_contributions=True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Demand.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the Demand instance and define all three thermal demands: SH, SC and DHW.</p>
+<p>DHW is also described by the maximum power demand that the DHW production system at building scale must be able
+to meet. This is a peak demand that may arise, it must be distinguished from <cite>DHW_profile_draw_off</cite>, which is the regular demand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>building</strong> (<a class="reference internal" href="tdmat.Building.html#tdmat.Building" title="tdmat.Building"><em>Building</em></a>) – The buildings those thermal demands are calculated.</p></li>
+<li><p><strong>weather</strong> (<a class="reference internal" href="tdmat.Weather.html#tdmat.Weather" title="tdmat.Weather"><em>Weather</em></a>) – The weather conditions at the location of <cite>building</cite>.</p></li>
+<li><p><strong>DHW_profile_draw_off</strong> (<em>numpy.ndarray</em>) – Length 8760. Arbitrary unit, energy or volume.
+The time series profile of DHW draw-off.
+Draw-off of DHW corresponds to real use of DHW, contrary to recirculation DHW demand.</p></li>
+<li><p><strong>DHW_proportions</strong> (<em>dict {&quot;draw-off&quot;: float</em><em>, </em><em>&quot;circulation&quot;: float}</em>) – Each value of <cite>DHW_proportions</cite> lies in [0,1], with the sum of the two values being 1.
+Describes the shares of <cite>E_DHW</cite> dedicated to the real energy DHW demand (‘draw-off’) and to the circulation
+part (‘circulation’).
+The time series profile of the circulation part is flat, i.e. at every moment the energy demand for circulating DHW
+is constant.</p></li>
+<li><p><strong>E_DHW</strong> (<em>float</em>) – In Wh/m2.
+Annual total energy DHW demand (draw-off + circulation).</p></li>
+<li><p><strong>nu_SH</strong> (<em>callable f</em><em>(</em><em>x</em><em>)</em><em>, </em><em>optional</em><em>, </em><em>default lambda x: 20</em>) – The function of the ambient outdoor air temperature (x, in °C) that gives the indoor setpoint temperature for SH demand.</p></li>
+<li><p><strong>nu_SC</strong> (<em>callable f</em><em>(</em><em>x</em><em>)</em><em>, </em><em>optional</em><em>, </em><em>default lambda x: max</em><em>(</em><em>22</em><em>, </em><em>x-7</em><em>)</em>) – The function of the ambient outdoor air temperature (x, in °C) that gives the indoor setpoint temperature for SC demand.</p></li>
+<li><p><strong>drop_contributions</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default True</em>) – Whether the physical data calculated to determine thermal demands is dropped from the main attribute <cite>df</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tdmat.Demand.__init__" title="tdmat.Demand.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(building, weather, DHW_profile_draw_off)</p></td>
+<td><p>Create the Demand instance and define all three thermal demands: SH, SC and DHW.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#tdmat.Demand.get_DHW_sizing_power" title="tdmat.Demand.get_DHW_sizing_power"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_DHW_sizing_power</span></code></a>(n_Apartment)</p></td>
+<td><p>Returns the annual maximum DHW power demand that may exist in a building having <cite>n_Apartment</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#tdmat.Demand.set_DHW_sizing_parameters" title="tdmat.Demand.set_DHW_sizing_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_DHW_sizing_parameters</span></code></a>(DHW_sizing_time_step)</p></td>
+<td><p>Set the time step that define the maximum annual DHW power demand.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Demand.get_DHW_sizing_power">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_DHW_sizing_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_Apartment</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Demand.get_DHW_sizing_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the annual maximum DHW power demand that may exist in a building having <cite>n_Apartment</cite>.</p>
+<p>Used to define</p>
+<p>Related to the <cite>set_DHW_sizing_parameters</cite> method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>n_Apartment</strong> (<em>int</em>) – The number of appartments of the building.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>The maximum DHW power demand depending on the annual draw-off DHW energy demand.</em></p></li>
+<li><p><em>In kW / kWh.</em></p></li>
+<li><p><em>* For small number of apartments (&lt;=50), real simulation values are used.</em></p></li>
+<li><p><em>* For n_Apartments in values = [1 -&gt; 50] U [50, 60, 70, 80, 90, 100, 200], discrete values are used.</em></p></li>
+<li><p>* Else, the log fitting described in the documentation of <cite>set_DHW_sizing_parameters</cite> is used.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This power is calculated using annual energy simulation of DHW demand for various number of apartments
+using the DHWCalc tool <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.</p>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>JORDAN, Ulrike, VAJEN, Klaus and KASSEL, Universität, 2005.
+DHWcalc: PROGRAM TO GENERATE DOMESTIC HOT WATER PROFILES WITH STATISTICAL MEANS FOR USER DEFINED CONDITIONS.
+ISES Solar World Congress, Orlando (US). 12 August 2005. P. 6.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tdmat.Demand.set_DHW_sizing_parameters">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_DHW_sizing_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DHW_sizing_time_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tdmat.Demand.set_DHW_sizing_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the time step that define the maximum annual DHW power demand.</p>
+<p>This parameter is used to define the <cite>DHW_sizing_power</cite> (kW/m2) attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>DHW_sizing_time_step</strong> (<em>{3</em><em>, </em><em>15}</em>) – In minutes.
+Qualifies the time step of the energy simulation ran using the DHWCalc tool <a class="footnote-reference brackets" href="#id6" id="id3">3</a>.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ol class="arabic simple">
+<li><p>This method is called at instance creation with <a href="#id4"><span class="problematic" id="id5">`</span></a>DHW_sizing_time_step`=15.</p></li>
+<li><p>Setting <cite>DHW_sizing_time_step</cite> = 3 leads to higher maximum demand due to a smaller simultaneity factor in DHW draw-offs.</p></li>
+<li><p>Energy simulation using DHWCalc lead to the following experimental log relations:</p>
+<ul class="simple">
+<li><p>for <cite>DHW_sizing_time_step</cite> = 15:
+exp(-(0.8903 * log(min(n_Apartment, 200)) + 3.0937))</p></li>
+<li><p>for <cite>DHW_sizing_time_step</cite> = 3:
+exp(-(0.9998 * log(min(n_Apartment, 200)) + 1.8547))</p></li>
+</ul>
+</li>
+<li><p>The changes involved by setting <cite>DHW_sizing_time_step</cite> are common to all <cite>Demand</cite> instances.</p></li>
+</ol>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>JORDAN, Ulrike, VAJEN, Klaus and KASSEL, Universität, 2005.
+DHWcalc: PROGRAM TO GENERATE DOMESTIC HOT WATER PROFILES WITH STATISTICAL MEANS FOR USER DEFINED CONDITIONS.
+ISES Solar World Congress, Orlando (US). 12 August 2005. P. 6.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">tdmat.Demand</a><ul>
+<li><a class="reference internal" href="#tdmat.Demand"><code class="docutils literal notranslate"><span class="pre">Demand</span></code></a><ul>
+<li><a class="reference internal" href="#tdmat.Demand.__init__"><code class="docutils literal notranslate"><span class="pre">Demand.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Demand.get_DHW_sizing_power"><code class="docutils literal notranslate"><span class="pre">Demand.get_DHW_sizing_power()</span></code></a></li>
+<li><a class="reference internal" href="#tdmat.Demand.set_DHW_sizing_parameters"><code class="docutils literal notranslate"><span class="pre">Demand.set_DHW_sizing_parameters()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../calculating_demand.html"
+                          title="previous chapter">3. Calculating thermal demands</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/generated/tdmat.Demand.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../calculating_demand.html" title="3. Calculating thermal demands"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">tdmat 0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../calculating_demand.html" >3. Calculating thermal demands</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">tdmat.Demand</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, BNerot.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

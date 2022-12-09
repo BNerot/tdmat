@@ -1,0 +1,6 @@
+﻿tdmat.get\_weather
+==================
+
+.. currentmodule:: tdmat
+
+.. autofunction:: get_weather
