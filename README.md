@@ -20,8 +20,8 @@ The typical procedure is as follow:
 3. `tdmat` put contributions together to create hourly profile of thermal demands
 
 ##  Installation notes
-The packaged version of `tamos`is available on PyPi. Please run:
-`pip install tamos`
+The packaged version of `tdmat`is available on PyPi. Please run:
+`pip install tdmat`
 
 
 ## Where is the project hosted?
